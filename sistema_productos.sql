@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 31-05-2025 a las 04:20:03
+-- Tiempo de generación: 31-05-2025 a las 18:07:19
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.3.14
 
@@ -80,21 +80,15 @@ CREATE TABLE IF NOT EXISTS `detalles_pedido` (
   PRIMARY KEY (`id`),
   KEY `pedido_id` (`pedido_id`),
   KEY `producto_id` (`producto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `detalles_pedido`
 --
 
 INSERT INTO `detalles_pedido` (`id`, `pedido_id`, `producto_id`, `cantidad`, `precio_unitario`) VALUES
-(5, 4, 3, 1, 50.00),
-(6, 4, 2, 1, 32.00),
-(8, 5, 2, 1, 32.00),
-(10, 6, 2, 1, 32.00),
-(12, 7, 2, 1, 32.00),
-(13, 8, 3, 1, 50.00),
-(14, 10, 1, 1, 25.00),
-(15, 10, 3, 1, 50.00);
+(18, 14, 2, 1, 32.00),
+(19, 14, 6, 1, 70.00);
 
 -- --------------------------------------------------------
 
@@ -110,20 +104,14 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `estado` enum('pendiente','completado') DEFAULT 'pendiente',
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `pedidos`
 --
 
 INSERT INTO `pedidos` (`id`, `usuario_id`, `fecha`, `estado`) VALUES
-(4, 2, '2025-05-30 15:12:08', 'completado'),
-(5, 2, '2025-05-30 15:13:54', 'completado'),
-(6, 2, '2025-05-30 15:21:24', 'completado'),
-(7, 2, '2025-05-30 15:59:04', 'completado'),
-(8, 2, '2025-05-30 16:01:09', 'completado'),
-(9, 2, '2025-05-30 16:01:30', 'completado'),
-(10, 2, '2025-05-30 16:02:15', 'completado');
+(14, 2, '2025-05-31 11:32:47', 'completado');
 
 -- --------------------------------------------------------
 
@@ -142,22 +130,23 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `stock` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_producto_categoria` (`categoria_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
 INSERT INTO `productos` (`id`, `categoria_id`, `nombre`, `descripcion`, `precio`, `imagen`, `stock`) VALUES
-(1, 1, 'a', 'Carne de res, lechuga, jitomate y cebolla', 25.00, 'WhatsApp Image 2025-05-28 at 6.00.04 PM.jpeg', 45),
-(2, 1, 'Hamburguesa hawaiana', 'Carne de res, piña, jamón y queso derretido', 32.00, 'WhatsApp Image 2025-05-28 at 5.56.43 PM.jpeg', 34),
+(1, 1, 'Hamburguesa sencilla', 'Carne de res, lechuga, jitomate y cebolla', 25.00, 'WhatsApp Image 2025-05-28 at 6.00.04 PM.jpeg', 48),
+(2, 1, 'Hamburguesa hawaiana', 'Carne de res, piña, jamón y queso derretido', 35.00, 'WhatsApp Image 2025-05-28 at 5.56.43 PM.jpeg', 42),
 (3, 1, 'Hamburguesa doble carne', 'Dos carnes de res, queso, tocino y aderezos', 50.00, 'WhatsApp Image 2025-05-28 at 6.00.44 PM.jpeg', 25),
 (4, 1, 'Hamburguesa Triple Carne', 'Tres carnes de res, queso y todos los complementos', 60.00, 'WhatsApp Image 2025-05-28 at 6.01.31 PM.jpeg', 20),
 (5, 1, 'Hot Dogs Sencillos', 'Pan, salchicha, cebolla, tomate y condimentos (promoción 3x$25)', 25.00, 'jochos.jpg', 60),
-(6, 2, 'Michelada', 'Cerveza preparada con limón, sal, chile y salsas especiales (1 litro)', 70.00, 'WhatsApp Image 2025-05-28 at 6.08.03 PM.jpeg', 30),
+(6, 2, 'Michelada', 'Cerveza preparada con limón, sal, chile y salsas especiales (1 litro)', 70.00, 'WhatsApp Image 2025-05-28 at 6.08.03 PM.jpeg', 29),
 (7, 2, 'Azulito', 'Bebida refrescante con vodka y saborizante azul (1 litro)', 75.00, 'WhatsApp Image 2025-05-28 at 6.02.27 PM.jpeg', 25),
 (8, 2, 'Jugo Boing', 'Jugo de frutas en diferentes sabores (250 ml)', 10.00, 'WhatsApp Image 2025-05-28 at 6.07.42 PM.jpeg', 90),
-(9, 2, 'Coca-Cola', 'Refresco de cola (600 ml)', 20.00, 'coca-cola.jpg', 70);
+(9, 2, 'Coca-Cola', 'Refresco de cola (600 ml)', 20.00, 'coca-cola.jpg', 70),
+(11, 2, 'Soda italiana (Manzana verde)', 's', 28.00, '683a9169c4703.jpeg', 20);
 
 -- --------------------------------------------------------
 
@@ -175,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `activo` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
